@@ -1,0 +1,27 @@
+# .github/release.yml
+
+changelog:
+  exclude:
+    labels:
+      - jenkins
+      - ci
+      - close
+    authors:
+      - github-actions
+      - dependabot
+  categories:
+    - title: New Features
+      labels:
+        - enhancement
+    - title: Fix
+      labels:
+        - bug
+    - title: Documentation
+      labels:
+        - documentation
+    - title: Dependencies
+      labels:
+        - dependencies
+    - title: Other Changes
+      labels:
+        - "*"

@@ -1,0 +1,60 @@
+name: 'Pull Request Labeler'
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, edited]
+
+permissions: {}
+
+jobs:
+
+  pr-labeler:
+
+    permissions:
+      contents: read  #  to read a configuration file
+      issues: write
+      pull-requests: write  #  to add labels to pull requests
+      repository-projects: read
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout ${{ github.event.client_payload.pull_request.head.ref }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.client_payload.pull_request.head.ref }}
+
+      - name: Build version
+        run: |
+          echo VERSION=\"$(cat VERSION)\" >> $GITHUB_ENV
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Update PR context
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr view $PR --json title,labels,milestone > check_pr.json
+
+          OLD_TITLE_PR=$(cat check_pr.json | jq '.title')
+          export OLD_TITLE_PR=${OLD_TITLE_PR:1:-1}
+          export NEW_TITLE_PR=$(python -c "import re; import os; title_pr = os.environ['OLD_TITLE_PR'].lstrip().rstrip(); match_standar_title=(re.match(r'^\[[a-zA-Z]+\]', title_pr)); print(*[match_standar_title.group().lower(), title_pr[len(match_standar_title.group()):]] if match_standar_title is not None else title_pr, sep='')")
+
+          OLD_MILESTONE_PR=$(cat check_pr.json | jq '.milestone.title')
+          export NEW_MILESTONE_PR=${{ env.VERSION }}
+
+          export NEW_LABEL_PR=$(python -c "import re; import os; import yaml; from yaml.loader import SafeLoader; data = yaml.load(open('.github/pr-prefix-labeler.yml'), Loader=SafeLoader); title_pr = os.environ['NEW_TITLE_PR']; match_standar_title=(re.match(r'^\[[a-zA-Z]+\]', title_pr)); print(data.get(match_standar_title.group(), '') if match_standar_title is not None else '')")
+          NEW_LABEL_EXIST=$(python -c "import os; import json; data = json.load(open('check_pr.json')); exits = filter(lambda e: e['name'] == os.environ['NEW_LABEL_PR'], data['labels']); print(','.join([e['name'] for e in exits]))")
+
+          if [ "$OLD_TITLE_PR" != "$NEW_TITLE_PR" ] || [ "$OLD_MILESTONE_PR" != "$NEW_MILESTONE_PR" ] || [ $NEW_LABEL_PR != $NEW_LABEL_EXIST ]; then
+            gh pr edit $PR --title "${NEW_TITLE_PR}" --add-label "$NEW_LABEL_PR" --milestone "${NEW_MILESTONE_PR}"
+          fi
