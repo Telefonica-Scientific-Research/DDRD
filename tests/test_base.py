@@ -1,5 +1,5 @@
-from project_name.base import NAME
+from data_driven_ris_deployment.base import NAME
 
 
 def test_base():
-    assert NAME == "project_name"
+    assert NAME == "data_driven_ris_deployment"

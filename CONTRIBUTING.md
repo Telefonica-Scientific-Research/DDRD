@@ -1,6 +1,6 @@
 # How to develop on this project
 
-project_name welcomes contributions from the community.
+data_driven_ris_deployment welcomes contributions from the community.
 
 **You need PYTHON3!**
 
@@ -8,9 +8,9 @@ This instructions are for linux base systems. (Linux, MacOS, BSD, etc.)
 ## Setting up your own fork of this repo.
 
 - On github interface click on `Fork` button.
-- Clone your fork of this repo. `git clone git@github.com:YOUR_GIT_USERNAME/project_urlname.git`
-- Enter the directory `cd project_urlname`
-- Add upstream repo `git remote add upstream https://github.com/author_name/project_urlname`
+- Clone your fork of this repo. `git clone git@github.com:YOUR_GIT_USERNAME/data_driven_RIS_deployment.git`
+- Enter the directory `cd data_driven_RIS_deployment`
+- Add upstream repo `git remote add upstream https://github.com/Telefonica-Scientific-Research/data_driven_RIS_deployment`
 
 ## Setting up your own virtual environment
 
