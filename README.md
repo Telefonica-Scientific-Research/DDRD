@@ -26,7 +26,7 @@ This open-source repository includes two core methodologies: a **reflection-base
 
 ### Features
 - Supports large-scale, multi-cell networks and multiple radio deployments (4G/5G/6G).
-- Uses NVIDIA's **Sionna RT** for high-fidelity ray tracing.
+- Uses NVIDIA's **Sionna RT (v0.19.2)** for high-fidelity ray tracing.
 - Joint optimization of RIS location, phase-shift configuration, and BS beamforming.
 - Clustering-based user grouping for scalable RIS placement.
 - Modular support for **reflection-based** and **scattering-based** RIS deployment strategies.
@@ -104,3 +104,8 @@ The key functions of the simulation pipeline are in `main.py`. Due to the high c
 
      https://github.com/Telefonica-Scientific-Research/DDRD/blob/76ba71a3d9d255e9b32aa621922832f94bbc0e91/main.py#L128-L142
 
+## Citation
+
+If you find this work useful for your research, please cite our paper:
+
+Beyraghi, S., Shabanpour, J., Geraci, G., Almasan, P., & Lozano, A. (2025). Data-Driven Deployment of Reconfigurable Intelligent Surfaces in Cellular Networks. ArXiv. https://arxiv.org/abs/2510.10190
