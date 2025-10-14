@@ -108,9 +108,13 @@ The key functions of the simulation pipeline are in `main.py`. Due to the high c
 
 If you find this work useful for your research, please cite our paper:
 
-@article{Beyraghi2025DataDrivenRIS,
+@article{beyraghi2025datadriven,
   title={Data-Driven Deployment of Reconfigurable Intelligent Surfaces in Cellular Networks},
+  
   author={Beyraghi, Mohammadsina and Shabanpour, Javad and Geraci, Giovanni and Almasan, Paul and Lozano, Angel},
+  
   journal={arXiv preprint arXiv:2510.10190},
+  
   year={2025}
 }
+
