@@ -1,6 +1,12 @@
 # Data-Driven Deployment of Reconfigurable Intelligent Surfaces in Cellular Networks
 
-Contact: [Sina Beyraghi](mailto:mohammadsina.beyraghi@telefonica.com)
+#### Link to paper: [[here]([https://arxiv.org/abs/1910.07421](https://arxiv.org/abs/2510.10190))]
+#### Sina Beyraghi, Javad Shabanpour, Giovanni Geraci, Paul Almasan, Angel Lozano
+
+Contact: Sina Beyraghi: <mohammadsina.beyraghi@telefonica.com>
+
+## Abstract
+This paper presents a fully automated, data-driven framework for the large-scale deployment of reconfigurable intelligent surfaces (RISs) in cellular networks. Leveraging physically consistent ray tracing and empirical data from a commercial deployment in the UK, the proposed method jointly optimizes RIS placement, orientation, configuration, and base station beamforming in dense urban environments across frequency bands (corresponding to 4G, 5G, and a hypothetical 6G system). Candidate RIS locations are identified via reflection- and scattering-based heuristics using calibrated electromagnetic models within the Sionna Ray Tracing (RT) engine. Outage users are clustered to reduce deployment complexity, and the tradeoff between coverage gains and infrastructure cost is systematically evaluated. It is shown that achieving meaningful coverage improvement in urban areas requires a dense deployment of large-aperture RIS units, raising questions about cost-effectiveness. To facilitate reproducibility and future research, the complete simulation framework and RIS deployment algorithms are provided as open-source software. 
 
 ## Description
 This open-source repository includes two core methodologies: a **reflection-based algorithm** and a **scattering-based algorithm**, both designed to determine optimal RIS placement, phase configuration, and base station (BS) beam selection using site-specific simulations via Sionna RT.
@@ -108,10 +114,11 @@ The key functions of the simulation pipeline are in `main.py`. Due to the high c
 
 If you find this work useful for your research, please cite our paper:
 
+```
 @article{beyraghi2025datadriven,
   title={Data-Driven Deployment of Reconfigurable Intelligent Surfaces in Cellular Networks},
   author={Beyraghi, Mohammadsina and Shabanpour, Javad and Geraci, Giovanni and Almasan, Paul and Lozano, Angel},
   journal={arXiv preprint arXiv:2510.10190},
   year={2025}
 }
-
+```
